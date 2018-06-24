@@ -1,0 +1,36 @@
+{% load static %}
+
+<html>
+<head>
+	<title>Welcome Diary!</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'dear_diary/bootstrap-4.1.0/dist/css/bootstrap.min.css' %}" />
+	 
+   
+</head>
+<body>
+	<div >
+		<div style="background-color: #00cc99;color:white;height: 100px;text-align: left;">
+			<h3><p style="padding-left: 20px;padding-top: 25px;">Dear Diary</h3></p>
+		</div>
+		<br/>
+		<br>
+		<div style="text-align:center;">
+			<h3>All Entries</h3>
+		</div>
+		<div class="container" style="align-content: center;">
+			<a href="{% url 'dear_diary:add' %}">Add new Entry</a>
+			&nbsp;&nbsp;<a href="/admin">Visit Admin</a>
+			{% for each_entry in entries %}
+		  <div class="jumbotron">
+		  	<p><strong>Publish date:</strong>{{ each_entry.pub_date }}</p>
+<!-- 		    <h1>Bootstrap Tutorial</h1>  -->
+		    <p>{{each_entry.text}}</p> 
+		  </div>
+		  {% endfor %}
+		  
+		</div>
+	</div>
+</body>
+ <script  type="text/javascript" href="{% static 'dear_diary/js/jquery-min.js' %}" />
+    <script  type="text/javascript" href="{% static 'dear_diary/bootstrap-4.1.0/dist/js/bootstrap.min.js' %}" />
+</html>

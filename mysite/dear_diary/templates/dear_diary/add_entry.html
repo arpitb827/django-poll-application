@@ -1,0 +1,35 @@
+{% load static %}
+
+<html>
+<head>
+	<title>Welcome Diary!</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'dear_diary/bootstrap-4.1.0/dist/css/bootstrap.min.css' %}" />
+	 
+    <!-- <script  type="text/javascript" href="{% static 'dear_diary/js/jquery-min.js' %}" />
+    <script  type="text/javascript" href="{% static 'dear_diary/bootstrap-4.1.0/dist/js/bootstrap.min.js' %}" /> -->
+</head>
+<body>
+	<div >
+		<div style="background-color: #00cc99;color:white;height: 100px;text-align: left;">
+			<h3><p style="padding-left: 20px;padding-top: 25px;">Dear Diary</h3></p>
+		</div>
+		<br/>
+		<br>
+		<a href="{% url 'dear_diary:home' %}">Back to All Entries</a>
+		<div class="container" style="align-content: center;">
+			<h3> Add new Entry</h3>
+			<form method="POST" action="{% url 'dear_diary:add' %}">
+				{% csrf_token %}
+			  <div class="jumbotron">
+				{{form.text}}
+				<br/>
+				<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			 </form>
+		</div>
+		
+	</div>
+</body>
+<script  type="text/javascript" href="{% static 'dear_diary/js/jquery-min.js' %}" />
+    <script  type="text/javascript" href="{% static 'dear_diary/bootstrap-4.1.0/dist/js/bootstrap.min.js' %}" />
+</html>
