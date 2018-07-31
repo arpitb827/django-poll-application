@@ -13,3 +13,9 @@ class Entry(models.Model):
 	class Meta:
 		verbose_name_plural = 'entries'
 
+
+class EntrySummarry(Entry):
+    class Meta:
+        proxy = True
+        verbose_name = 'Entry Summary'
+        verbose_name_plural = 'Entries Summary'

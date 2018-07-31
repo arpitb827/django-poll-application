@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
-    'dear_diary'
+    'dear_diary',
+    'django.contrib.humanize',
+    'Entities',
+    'Events',
 ]
 
 MIDDLEWARE = [
@@ -53,11 +56,19 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'mysite.urls'
 
+TEMPLATE_LOADERS = (
+        'django.template.loaders.filesystem.Loader',
+        'django.template.loaders.app_directories.Loader',
+)
+
 TEMPLATES = [
     {
+
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        #'DIRS': [],
+        # 'DIRS': ['Entities/templates/'],
+        # 'DIRS': [os.path.join(BASE_DIR, 'templates')], #for customising the template
         'DIRS': [os.path.join(BASE_DIR, 'templates')], #for customising the template
+        # 'STATICFILES_DIRS' : [os.path.join(BASE_DIR, "static") ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,6 +80,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
@@ -121,3 +133,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+

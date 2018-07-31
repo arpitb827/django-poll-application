@@ -1,0 +1,22 @@
+{% extends 'admin/base.html' %}
+{% load i18n static %}
+    {% block breadcrumbs %}
+    <div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+    <a href="#">{% trans 'Home11' %}</a>
+    <a href="#">{% trans 'Home11' %}</a>
+    <a href="#">{% trans 'Home11' %}</a>
+    {% if title %} &rsaquo; {{ title }}{% endif %}
+    </div>
+    {% endblock %}
+
+{% block content %}
+<div>
+<form action="." method="POST" enctype="multipart/form-data">
+{{ form.as_p }}
+{% csrf_token %}
+<button type="submit">Upload CSV</button>
+</form>
+</div>
+<br />
+{% endblock %}

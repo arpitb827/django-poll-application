@@ -1,0 +1,167 @@
+{% extends "admin/change_list.html" %}
+{% load humanize %}
+{% block content_title %}
+    <h1> Entries Summary </h1>
+{% endblock %}
+<!-- {% block object-tools %}
+    <div>
+        <form action="immortal/" method="POST">
+            {% csrf_token %}
+                <button type="submit">Make Immortal</button>
+        </form>
+        <form action="mortal/" method="POST">
+            {% csrf_token %}
+                <button type="submit">Make Mortal</button>
+        </form>
+    </div>
+    <br />
+    {{ block.super }}
+{% endblock %} -->
+
+{% block result_list %}
+    <div class="results">
+    <table>
+        
+    <thead>
+      <tr>
+        <th>
+          <div class="text">
+            <a href="#">Entry</a>
+          </div>
+        </th>
+        <th>
+          <div class="text”>
+            <a href="#">Id</a>
+          </div>
+        </th>
+        <th>
+          <div class="text”>
+            <a href="#">Count</a>
+          </div>
+        </th>
+        <th>
+          <div class="text">
+            <a href="#">
+              <strong>Pub Date</strong>
+            </a>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in summary %}
+      <tr class="{% cycle 'row1' 'row2' %}">
+        <td> {{ row.text }} </td>
+        <td> {{ row.id }} </td>
+        <td>{{ row.total| intcomma}}</td>
+        <td> {{row.pub_date}}</td>
+        <!-- <td> -->
+<!--           <strong>
+          {{ row.total_sales | 
+              default:0 | 
+              percentof:summary_total.total_sales }} 
+          </strong> -->
+      <!--   </td> -->
+      <td><a href="#" class="btn btn-primary"/>Click Me</td>
+      </tr>
+
+      {% endfor %}
+      <tr style="font-weight:bold; border-top:2px solid #DDDDDD;" >
+  		
+            <td> Total </td>
+            <td> {{ summary_total.total_sales | default:0 }} </td>
+            <td> {{ summary_total.total | intcomma }} </td>
+            <td> 100% </td>
+        </tr>
+    </tbody>
+    
+  </table>
+  <hr/>
+  <br/>
+  <br/>
+  <h2> Sales over time </h2>
+
+  <style>
+    .bar-chart {
+      display: flex;
+      justify-content: space-around;
+      height: 160px;
+      padding-top: 60px;
+      overflow: hidden;
+    }
+    .bar-chart .bar {
+        flex: 100%;
+        align-self: flex-end;
+        margin-right: 2px;
+        position: relative;
+        background-color: #79aec8;
+    }
+    .bar-chart .bar:last-child {
+        margin: 0;
+    }
+    .bar-chart .bar:hover {
+        background-color: #417690;
+    }
+    .bar-chart .bar .bar-tooltip {
+        position: relative;
+        z-index: 999;
+    }
+    .bar-chart .bar .bar-tooltip {
+        position: absolute;
+        top: -60px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        font-weight: bold;
+        opacity: 0;
+    }
+    .bar-chart .bar:hover .bar-tooltip {
+        opacity: 1;
+    }
+    
+    </style>
+
+        <div class="bar-chart">
+        {% for x in summary_over_time %}
+            <div class="bar" style="height:{{x.pct}}%">
+                <div class="bar-tooltip">
+                    {{x.total | default:0 | intcomma }}<br>
+                    {{x.period }}
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+
+
+<script>
+window.onload = function() {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: "Desktop Search Engine Market Share - 2016"
+	},
+	data: [{
+		type: "pie",
+		startAngle: 240,
+		yValueFormatString: "##0.00\"%\"",
+		indexLabel: "{label} {y}",
+		dataPoints: [
+			{y: 79.45, label: "Google"},
+			{y: 7.31, label: "Bing"},
+			{y: 7.06, label: "Baidu"},
+			{y: 4.91, label: "Yahoo"},
+			{y: 1.26, label: "Others"}
+		]
+	}]
+});
+chart.render();
+
+}
+</script>
+  
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</div>
+{% endblock %}
+{% block pagination %}{% endblock %}

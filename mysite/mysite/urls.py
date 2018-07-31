@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include,path
+from Events.admin import event_admin_site
+from Entities.admin import entity_admin_site
 
 urlpatterns = [
 
@@ -22,6 +24,8 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     # path('', include('polls.urls')),
     path('', include('dear_diary.urls')),
+    path('entity-admin/', entity_admin_site.urls),
+    path('event-admin/', event_admin_site.urls),
     
 
 
