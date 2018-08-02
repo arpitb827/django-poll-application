@@ -64,6 +64,9 @@ class Hero(Entity):
 	spouse = models.ForeignKey(
 		"self", related_name="+", null=True, blank=True, on_delete=models.SET_NULL
 		)
+	son = models.ForeignKey(
+		"self", related_name="+", null=True, blank=True, on_delete=models.SET_NULL
+	)
 
 
 class Villain(Entity):

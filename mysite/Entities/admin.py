@@ -144,10 +144,10 @@ class HeroAdmin(admin.ModelAdmin):
     def process_imortal(self , request, hero_id, *args, **kwargs):
         self.model.objects.all().filter(id=hero_id).update(is_immortal=False)
         self.message_user(request, "Hero {} are now immortal".format(hero_id))
-        # return HttpResponseRedirect("../")
-        form = PromiseForm()
-        payload = {"form": form}
-        return render(request, 'Entities/a_test.html',payload)
+        return HttpResponseRedirect("../")
+        # form = PromiseForm()
+        # payload = {"form": form}
+        # return render(request, 'Entities/a_test.html',payload)
 
     def get_urls(self):
         urls = super().get_urls()
