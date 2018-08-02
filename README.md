@@ -1,4 +1,4 @@
 # django-poll-application
 
-A first application from django learning!
+A first application from django learning!!
 
