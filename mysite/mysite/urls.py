@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import include,path
 from Events.admin import event_admin_site
 from Entities.admin import entity_admin_site
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 
 urlpatterns = [
 
@@ -30,3 +32,5 @@ urlpatterns = [
 
 
 ]
+
+urlpatterns += staticfiles_urlpatterns()
