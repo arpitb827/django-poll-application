@@ -1,0 +1,14 @@
+server {
+    listen 80;
+    server_name 18.220.218.36;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/ubuntu/django_project/django-poll-application/mysite;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/ubuntu/django_project/django-poll-application/mysite/mysite.sock;
+    }
+}
